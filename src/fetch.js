@@ -1,8 +1,8 @@
-const API_ENDPOINT = "https://witzeapi.de/api/joke";
+const API_ENDPOINT = "https://witzapi.de/api/joke";
 
 export async function getJoke() {
-  const response = await fetch("https://witzeapi.de/api/joke");
-  const data = await response.json;
+  const response = await fetch("https://witzapi.de/api/joke");
+  const data = await response.json();
   return data;
 }
 

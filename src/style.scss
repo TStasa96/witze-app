@@ -1,4 +1,5 @@
 // Farbvariablen für ein konsistentes Dark Theme
+@use "sass:color";
 $bg-main: #121214; // Tiefer, moderner Dunkelmodus-Hintergrund
 $bg-card: #1e1e24; // Etwas helleres Anthrazit für die Boxen
 $text-primary: #f5f6fa; // Nahezu Weiß für perfekten Kontrast
@@ -93,7 +94,7 @@ body {
       &:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
-        background-color: lighten($accent-green, 5%);
+        background-color: color.adjust($accent-green, $lightness: 5%);
       }
 
       &:active {
