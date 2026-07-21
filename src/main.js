@@ -3,17 +3,17 @@ import { getJoke } from "./fetch.js";
 
 const loadJokeBtn = document.querySelector(".joke-box__btn--load");
 const loadJokeText = document.querySelector(".joke-box__text");
-const saveArchivJoke = document.querySelector(".joke-box__btn--archive");
-const jokeArea = document.querySelector(".saved-jokes__list");
+const saveArchivJokeBtn = document.querySelector(".joke-box__btn--archive");
+const jokeAreaList = document.querySelector(".saved-jokes__list");
 
 loadJokeBtn.addEventListener("click", async () => {
   const data = await getJoke();
   console.log(data);
   loadJokeText.textContent = data[0].text; //weil das ein Obj ist navigieren wir mit punkten mit data.setup zur der zeile um die auszulesen
-  localStorage.setItem("joke", JSON.stringify(data[0])); //das joke ist der key und data ist die value
+  localStorage.setItem("joke", JSON.stringify(data[0])); //das joke ist der key und data ist die value wir wandeln die um in ein JSON format für Localstorage
 });
 
-saveArchivJoke.addEventListener("click", saveArchivJokeFunc);
+saveArchivJokeBtn.addEventListener("click", saveArchivJokeFunc);
 
 function localJoke() {
   const storeageJoke = localStorage.getItem("joke");
@@ -44,13 +44,15 @@ function saveArchivJokeFunc() {
               </svg>
             </button>
           </div>`;
-    jokeArea.insertAdjacentHTML("afterbegin", jokeAreaEle);
+    jokeAreaList.insertAdjacentHTML("afterbegin", jokeAreaEle);
   }
 }
 
 /*jetzt habe ich die localJoke funtkion einiger massen geschrieben und
--jetzt will ich die daten in das HTML anzeigen sobald ich auf den button klicke "Witze speichern" fertig-
-- diese sollen in gespeicherte witze angezeigt werden fertig-
--es auch soll geprüft werden ob da ein witz schon drin ist und somit nicht doppelt gespeichert werden kann-
+-jetzt will ich die daten in das HTML liste anzeigen sobald ich auf den button klicke "Witze speichern" -fertig-
+- diese sollen in gespeicherte witze angezeigt werden -fertig-
+
+
+- und es auch soll geprüft werden ob da ein witz schon drin ist und somit nicht doppelt gespeichert werden kann-
 -der witz soll beim neuladen der Seite nich verschwinden-
 - und der witze speichern button soll erst kommen, wenn ein witz geladen worden ist*/
