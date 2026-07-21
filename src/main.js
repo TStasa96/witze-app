@@ -54,5 +54,6 @@ function saveArchivJokeFunc() {
 
 
 - und es auch soll geprüft werden ob da ein witz schon drin ist und somit nicht doppelt gespeichert werden kann-
--der witz soll beim neuladen der Seite nich verschwinden-
-- und der witze speichern button soll erst kommen, wenn ein witz geladen worden ist*/
+- der witz soll beim neuladen der Seite nich verschwinden-
+- und der witze speichern button soll erst kommen, wenn ein witz geladen worden ist-
+- der witz soll gelöscht werden über den button neben den gespeicherten witz*/
