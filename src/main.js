@@ -10,6 +10,7 @@ function getArchivedJokes() {
   let jokeArray = [];
   let getJoke = localStorage.getItem("jokeJson");
   if (getJoke) {
+    /*in Js gilt is eine Variable gefüllt und wird mit einem If abgefragt dann ist sie true, wenn nix drin ist dann ist die if abfrage leer also null und somit wird der if block nicht ausgeführt*/
     jokeArray = JSON.parse(getJoke);
   }
   return jokeArray;
@@ -46,6 +47,10 @@ function saveArchivJokeFunc() {
     alert("Dieser Witz ist bereits gespeichert");
     return; /*das Return hält die ganze funktion an wenn isDouble auf true gestzt wird somit ist das If wahr und die Funktion gibt ein alert aus */
   }
+
+  const jokeArray = getArchivedJokes();
+  jokeArray.push(joke);
+  localStorage.setItem("archivedJokes", JSON.stringify(jokeArray));
 
   if (joke && joke.text) {
     // checken ob das objekt schon da ist und der Text im objekt falls beides zutrifft dann läuft es weiter
