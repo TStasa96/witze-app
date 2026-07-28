@@ -6,9 +6,35 @@ const loadJokeText = document.querySelector(".joke-box__text");
 const saveArchivJokeBtn = document.querySelector(".joke-box__btn--archive");
 const jokeAreaList = document.querySelector(".saved-jokes__list");
 
+function renderArchivedJokes() {
+  let renderJokes = getArchivedJokes();
+  renderJokes.forEach((joke) => {
+    const jokeAreaEle = `<div class="saved-joke">
+            <div class="saved-joke__text">${joke.text}</div>
+            <button class="saved-joke__remove">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="saved-joke__remove-icon"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m3 3 1.664 1.664M21 21l-1.5-1.5m-5.485-1.242L12 17.25 4.5 21V8.742m.164-4.078a2.15 2.15 0 0 1 1.743-1.342 48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185V19.5M4.664 4.664 19.5 19.5"
+                />
+              </svg>
+            </button>
+          </div>`;
+    jokeAreaList.insertAdjacentHTML("afterbegin", jokeAreaEle);
+  });
+}
+
 function getArchivedJokes() {
   let jokeArray = [];
-  let getJoke = localStorage.getItem("jokeJson");
+  let getJoke = localStorage.getItem("archivedJokes");
   if (getJoke) {
     /*in Js gilt is eine Variable gefüllt und wird mit einem If abgefragt dann ist sie true, wenn nix drin ist dann ist die if abfrage leer also null und somit wird der if block nicht ausgeführt*/
     jokeArray = JSON.parse(getJoke);
@@ -76,6 +102,8 @@ function saveArchivJokeFunc() {
     jokeAreaList.insertAdjacentHTML("afterbegin", jokeAreaEle);
   }
 }
+
+renderArchivedJokes();
 
 /*jetzt habe ich die localJoke funtkion einiger massen geschrieben und
 -jetzt will ich die daten in das HTML liste anzeigen sobald ich auf den button klicke "Witze speichern" -fertig-
