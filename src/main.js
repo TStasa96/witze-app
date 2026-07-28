@@ -74,7 +74,7 @@ function saveArchivJokeFunc() {
     return; /*das Return hält die ganze funktion an wenn isDouble auf true gestzt wird somit ist das If wahr und die Funktion gibt ein alert aus */
   }
 
-  const jokeArray = getArchivedJokes();
+  const jokeArray = getArchivedJokes(); /*ier hole ich den speicher */
   jokeArray.push(joke);
   localStorage.setItem("archivedJokes", JSON.stringify(jokeArray));
 
