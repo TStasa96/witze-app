@@ -109,8 +109,8 @@ renderArchivedJokes();
 -jetzt will ich die daten in das HTML liste anzeigen sobald ich auf den button klicke "Witze speichern" -fertig-
 - diese sollen in gespeicherte witze angezeigt werden -fertig-
 - und es auch soll geprüft werden ob da ein witz schon drin ist und somit nicht doppelt gespeichert werden kann-fertig-
+- der witz soll beim neuladen der Seite nich verschwinden-fertig-
 
 
-- der witz soll beim neuladen der Seite nich verschwinden-
 - und der witze speichern button soll erst kommen, wenn ein witz geladen worden ist-
 - der witz soll gelöscht werden über den button neben den gespeicherten witz*/

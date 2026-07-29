@@ -17,6 +17,8 @@ $accent-danger: #ff4757; // Rot für das Löschen-Icon
 
 body {
   background-color: $bg-main;
+  // Verhindert unerwünschtes horizontales Scrollen auf Mobilgeräten
+  overflow-x: hidden;
 }
 
 .app {
@@ -26,17 +28,19 @@ body {
   min-height: 100vh;
   color: $text-primary;
   align-items: center;
-  padding: 3rem 1.5rem;
+  // Flexibles Padding: Auf kleinen Screens etwas weniger Abstand zum Rand
+  padding: clamp(1.5rem, 5vw, 3rem) 1rem;
 }
 
 .headline-section {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 2rem;
   max-width: 550px;
   width: 100%;
 
   &__title {
-    font-size: 2.5rem;
+    // Reagiert dynamisch zwischen 1.8rem auf Handy und 2.5rem auf Desktop
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     font-weight: 800;
     letter-spacing: -0.5px;
     background: linear-gradient(135deg, $accent-blue, $accent-green);
@@ -52,7 +56,8 @@ body {
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
-  padding: 3rem 2.5rem;
+  // Passt das Innen-Padding dynamisch an die Displaybreite an
+  padding: clamp(1.5rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2.5rem);
   border-radius: 24px;
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.4),
@@ -63,19 +68,22 @@ body {
 
   &__text {
     color: $text-primary;
-    font-size: 1.35rem;
+    // Reagiert leicht auf Displaygröße
+    font-size: clamp(1.1rem, 3.5vw, 1.35rem);
     line-height: 1.6;
     font-weight: 500;
     margin-bottom: 0.5rem;
+    // Verhindert das Aufbrechen der Karte bei extrem langen Wörtern
+    overflow-wrap: anywhere;
   }
 
   &__btn {
-    padding: 0.85rem 2rem;
-    border-radius: 14px; // Moderneres, abgerundetes Rechteck statt Pille
+    padding: 0.85rem 1.5rem;
+    border-radius: 14px;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    width: 100%; // Buttons untereinander auf voller Breite wirken stabiler
+    width: 100%;
     max-width: 320px;
     display: flex;
     flex-direction: row;
@@ -84,7 +92,6 @@ body {
     gap: 0.75rem;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-    // Modifier 1: Primärer Action-Button
     &--load {
       background-color: $accent-green;
       color: #050505;
@@ -102,7 +109,6 @@ body {
       }
     }
 
-    // Modifier 2: Sekundärer Speicher-Button
     &--archive {
       background-color: transparent;
       color: $text-muted;
@@ -125,13 +131,14 @@ body {
     height: 1.2rem;
     width: 1.2rem;
     stroke: currentColor;
+    flex-shrink: 0; // Verhindert Quetschen des Icons auf schmalen Displays
   }
 }
 
 .saved-jokes {
-  margin-top: 3rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
   background-color: $bg-card;
-  padding: 2.5rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
   border-radius: 24px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
   max-width: 550px;
@@ -139,7 +146,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
 
   &__title {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
     font-weight: 700;
     text-align: left;
     margin-bottom: 1.5rem;
@@ -159,8 +166,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1.2rem;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
   background-color: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 12px;
@@ -173,20 +180,24 @@ body {
 
   &__text {
     color: $text-muted;
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.5;
+    overflow-wrap: anywhere; // Schutz gegen Text-Überlauf
   }
 
   &__remove {
     background: none;
     border: none;
-    padding: 0.5rem;
+    padding: 0.6rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     transition: background-color 0.2s ease;
+    flex-shrink: 0; // Stellt sicher, dass der Delete-Button nie zusammengedrückt wird
+    min-width: 40px; // Ausreichende Touch-Fläche für Finger
+    min-height: 40px;
 
     &:hover {
       background-color: rgba($accent-danger, 0.1);
@@ -205,5 +216,18 @@ body {
       stroke: $accent-danger;
       transform: scale(1.1);
     }
+  }
+}
+
+// Spezifisches Tuning für kleine Smartphones (z.B. iPhone SE, Pixel 4a)
+@media (max-width: 480px) {
+  .joke-box {
+    &__btn {
+      max-width: 100%; // Nutzt auf mobilen Geräten die volle Breite der Box
+    }
+  }
+
+  .saved-joke {
+    padding: 0.85rem 1rem; // Etwas kompakter auf kleinen Bildschirmen
   }
 }
