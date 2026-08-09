@@ -111,7 +111,7 @@ function deleteJokeFromStorage(jokeTextToDelete) {
   localStorage.setItem("archivedJokes", JSON.stringify(updatedArray));
 }
 
-// Dieser Teil fehlt aktuell noch in deinem Code:
+// Dieser Teil fehlt aktuell noch in deinem Code fertig:
 jokeAreaList.addEventListener("click", (event) => {
   const removeBtn = event.target.closest(".saved-joke__remove");
 
