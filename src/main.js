@@ -111,6 +111,24 @@ function deleteJokeFromStorage(jokeTextToDelete) {
   localStorage.setItem("archivedJokes", JSON.stringify(updatedArray));
 }
 
+// Dieser Teil fehlt aktuell noch in deinem Code:
+jokeAreaList.addEventListener("click", (event) => {
+  const removeBtn = event.target.closest(".saved-joke__remove");
+
+  if (removeBtn) {
+    const jokeContainer = removeBtn.closest(".saved-joke");
+
+    // HIER erzeugst du die Variable jokeText durch Auslesen aus dem HTML:
+    const jokeText = jokeContainer.querySelector(".saved-joke__text").textContent;
+
+    // HIER rufst du deine Funktion auf und übergibst jokeText an jokeTextToDelete:
+    deleteJokeFromStorage(jokeText);
+
+    // HIER löschst du das Element aus der HTML-Anzeige:
+    jokeContainer.remove();
+  }
+});
+
 /*
 -jetzt will ich die daten in das HTML liste anzeigen sobald ich auf den button klicke "Witze speichern" -fertig-
 - diese sollen in gespeicherte witze angezeigt werden -fertig-
